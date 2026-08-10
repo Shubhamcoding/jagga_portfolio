@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, animate } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import MagneticButton from './MagneticButton';
 import heroBg from '../assets/images/hero-bg.png';
 
@@ -46,9 +47,10 @@ export default function Hero() {
   // Track whether stats are in view for count-up trigger
   const [statsVisible, setStatsVisible] = useState(false);
 
-  const handleScroll = (e, id) => {
-    e.preventDefault();
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const navigate = useNavigate();
+
+  const handleNavigate = (path) => {
+    navigate(path);
   };
 
   return (
@@ -108,9 +110,8 @@ export default function Hero() {
               transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 1.35 }}
             >
               <MagneticButton
-                href="#work"
                 className="btn btn-primary"
-                onClick={(e) => handleScroll(e, 'work')}
+                onClick={() => handleNavigate('/work')}
               >
                 Learn More
                 <svg className="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -119,9 +120,8 @@ export default function Hero() {
                 </svg>
               </MagneticButton>
               <MagneticButton
-                href="#contact"
                 className="btn btn-outline"
-                onClick={(e) => handleScroll(e, 'contact')}
+                onClick={() => handleNavigate('/contact')}
               >
                 Watch Now
                 <svg className="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">

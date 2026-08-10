@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Link } from 'react-router-dom';
 import AnimatedSection, { AnimatedItem } from './AnimatedSection';
 import AnimatedCard from './AnimatedCard';
 import BeforeAfter from './BeforeAfter';
@@ -100,13 +101,13 @@ export default function Work() {
                   <p className="work__card-description">{project.description}</p>
                   <div className="work__card-footer">
                     <span className="work__card-result">{project.result}</span>
-                    <a href="#contact" className="work__card-link">
+                    <Link to="/contact" className="work__card-link">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M5 12h14" />
                         <path d="M12 5l7 7-7 7" />
                       </svg>
                       Read more
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </AnimatedCard>

@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
-  { id: 'home', label: 'Home' },
+  { id: '', label: 'Home' },
   { id: 'work', label: 'Work' },
   { id: 'about', label: 'About us' },
   { id: 'services', label: 'Services' },
@@ -10,8 +11,9 @@ const navLinks = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const currentPath = location.pathname.substring(1) || '';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,33 +21,6 @@ export default function Navbar() {
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: '-40% 0px -60% 0px' }
-    );
-
-    navLinks.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const handleClick = useCallback((e, id) => {
-    e.preventDefault();
-    setMenuOpen(false);
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
   return (
@@ -56,48 +31,53 @@ export default function Navbar() {
       transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.2 }}
     >
       <div className="navbar__inner container">
-        <motion.a
-          href="#home"
-          className="navbar__logo"
-          onClick={(e) => handleClick(e, 'home')}
+        <motion.div
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.97 }}
         >
-          <span className="navbar__logo-text">
-            <span className="navbar__logo-accent">Jagga</span> & Co.
-          </span>
-        </motion.a>
+          <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
+            <span className="navbar__logo-text">
+              <span className="navbar__logo-accent">Jagga</span> & Co.
+            </span>
+          </Link>
+        </motion.div>
 
         <div className={`navbar__links ${menuOpen ? 'navbar__links--open' : ''}`}>
-          {navLinks.map(({ id, label }) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className={`navbar__link ${activeSection === id ? 'navbar__link--active' : ''}`}
-              onClick={(e) => handleClick(e, id)}
-            >
-              {label}
-              {activeSection === id && (
-                <motion.span
-                  className="navbar__link-indicator"
-                  layoutId="nav-indicator"
-                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                />
-              )}
-            </a>
-          ))}
+          {navLinks.map(({ id, label }) => {
+            const isActive = currentPath === id;
+            return (
+              <NavLink
+                key={id}
+                to={`/${id}`}
+                className={({ isActive }) => `navbar__link ${isActive ? 'navbar__link--active' : ''}`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+                {isActive && (
+                  <motion.span
+                    className="navbar__link-indicator"
+                    layoutId="nav-indicator"
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </NavLink>
+            );
+          })}
         </div>
 
         <div className="navbar__right">
-          <motion.a
-            href="#contact"
-            className="btn btn-outline navbar__cta"
-            onClick={(e) => handleClick(e, 'contact')}
+          <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.96 }}
           >
-            Contact
-          </motion.a>
+            <Link
+              to="/contact"
+              className="btn btn-outline navbar__cta"
+              onClick={() => setMenuOpen(false)}
+            >
+              Contact
+            </Link>
+          </motion.div>
         </div>
 
         <button
@@ -127,3 +107,4 @@ export default function Navbar() {
     </motion.nav>
   );
 }
+

@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -25,11 +26,11 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 80, damping: 18 }}
           >
-            <a href="#home" className="footer__logo" onClick={scrollToTop}>
+            <Link to="/" className="footer__logo" onClick={scrollToTop}>
               <span className="footer__logo-text">
                 <span className="footer__logo-accent">Jagga</span> & Co.
               </span>
-            </a>
+            </Link>
             <p className="footer__tagline">
               Crafting digital experiences that convert. Strategy. Design. Code.
             </p>
@@ -43,11 +44,11 @@ export default function Footer() {
             transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.1 }}
           >
             <h4 className="footer__heading">Navigation</h4>
-            <a href="#home" className="footer__link">Home</a>
-            <a href="#work" className="footer__link">Work</a>
-            <a href="#about" className="footer__link">About us</a>
-            <a href="#services" className="footer__link">Services</a>
-            <a href="#contact" className="footer__link">Contact</a>
+            <Link to="/" className="footer__link">Home</Link>
+            <Link to="/work" className="footer__link">Work</Link>
+            <Link to="/about" className="footer__link">About us</Link>
+            <Link to="/services" className="footer__link">Services</Link>
+            <Link to="/contact" className="footer__link">Contact</Link>
           </motion.div>
 
           <motion.div
@@ -58,10 +59,10 @@ export default function Footer() {
             transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.2 }}
           >
             <h4 className="footer__heading">Services</h4>
-            <a href="#services" className="footer__link">Web Projects</a>
-            <a href="#services" className="footer__link">Product Strategy</a>
-            <a href="#services" className="footer__link">Custom Development</a>
-            <a href="#services" className="footer__link">Interface Design</a>
+            <Link to="/services" className="footer__link">Web Projects</Link>
+            <Link to="/services" className="footer__link">Product Strategy</Link>
+            <Link to="/services" className="footer__link">Custom Development</Link>
+            <Link to="/services" className="footer__link">Interface Design</Link>
           </motion.div>
 
           <motion.div

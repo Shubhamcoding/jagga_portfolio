@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import AnimatedSection, { AnimatedItem } from './AnimatedSection';
 
 const services = [
@@ -132,13 +133,13 @@ export default function Services() {
                 </motion.li>
               ))}
             </ul>
-            <a href="#contact" className="services__card-link">
+            <Link to="/contact" className="services__card-link">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14" />
                 <path d="M12 5l7 7-7 7" />
               </svg>
               Read more
-            </a>
+            </Link>
           </motion.div>
         ))}
       </div>

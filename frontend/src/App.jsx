@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Work from './components/Work';
@@ -12,11 +13,13 @@ export default function App() {
     <>
       <Navbar />
       <main>
-        <Hero />
-        <Work />
-        <About />
-        <Services />
-        <Contact />
+        <Routes>
+          <Route path="/" element={<Hero />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </main>
       <Footer />
     </>
