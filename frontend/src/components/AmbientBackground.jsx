@@ -165,9 +165,9 @@ export default function AmbientBackground() {
         style={{
           position: 'fixed',
           inset: 0,
-          backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px)`,
+          backgroundImage: `radial-gradient(var(--color-dot-grid, rgba(255, 255, 255, 0.04)) 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
-          opacity: 0.6,
+          opacity: 0.8,
           pointerEvents: 'none',
           zIndex: 0,
           maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 90%)',
