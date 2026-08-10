@@ -80,8 +80,9 @@ export default function Work() {
                 }}
               >
                 <AnimatedCard
-                  className={`work__card card-dark`}
+                  className={`work__card card-dark${project.url ? ' work__card--clickable' : ''}`}
                   id={`project-card-${project.id}`}
+                  onClick={() => project.url && setActiveModal(project)}
                 >
                   <div
                     className="work__card-image"
@@ -105,26 +106,15 @@ export default function Work() {
                     <p className="work__card-description">{project.description}</p>
                     <div className="work__card-footer">
                       <span className="work__card-result">{project.result}</span>
-                      {project.url ? (
-                        <button
-                          className="work__card-link"
-                          onClick={() => setActiveModal(project)}
-                          id={`view-project-${project.id}`}
-                        >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M5 12h14" />
-                            <path d="M12 5l7 7-7 7" />
+                      {project.url && (
+                        <span className="work__card-hint">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" />
+                            <path d="M9 9l6 6" />
+                            <path d="M15 9v6H9" />
                           </svg>
-                          View Live
-                        </button>
-                      ) : (
-                        <Link to="/contact" className="work__card-link">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M5 12h14" />
-                            <path d="M12 5l7 7-7 7" />
-                          </svg>
-                          Read more
-                        </Link>
+                          Click to preview
+                        </span>
                       )}
                     </div>
                   </div>

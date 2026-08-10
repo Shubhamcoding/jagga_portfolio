@@ -10,6 +10,7 @@ export default function AnimatedCard({
   className = '',
   enableTilt = true,
   id,
+  onClick,
 }) {
   const ref = useRef(null);
   const mouseX = useMotionValue(0.5);
@@ -41,6 +42,7 @@ export default function AnimatedCard({
       ref={ref}
       id={id}
       className={className}
+      onClick={onClick}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={
