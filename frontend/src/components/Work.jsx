@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import AnimatedSection, { AnimatedItem } from './AnimatedSection';
 import AnimatedCard from './AnimatedCard';
-import BeforeAfter from './BeforeAfter';
 import caseStudy1 from '../assets/images/case-study-1.png';
 import caseStudy2 from '../assets/images/case-study-2.png';
 import caseStudy3 from '../assets/images/case-study-3.png';
@@ -116,21 +115,6 @@ export default function Work() {
         </AnimatePresence>
       </div>
 
-      {/* Before / After */}
-      <AnimatedItem>
-        <div className="work__before-after">
-          <div className="work__before-after-header">
-            <span className="section-label">Transformation</span>
-            <h3 className="work__before-after-title">
-              See the <span className="accent-text">Difference</span>
-            </h3>
-            <p className="work__before-after-subtitle">
-              Drag the slider to compare the before and after of our Global Solutions Inc. redesign.
-            </p>
-          </div>
-          <BeforeAfter />
-        </div>
-      </AnimatedItem>
     </AnimatedSection>
   );
 }

@@ -4,37 +4,30 @@ import AnimatedSection, { AnimatedItem } from './AnimatedSection';
 const team = [
   {
     id: 1,
-    name: 'Arjun Mehta',
+    name: 'Gurinder Jagga',
     role: 'Founder & Creative Director',
-    bio: 'Visionary designer with 10+ years shaping digital brands. Obsessed with the intersection of aesthetics and conversion.',
-    avatar: 'AM',
+    bio: 'Visionary leader with a passion for crafting digital brands that leave a lasting impression. Drives the creative vision behind every project.',
+    avatar: 'GJ',
     color: '#EE4D38',
   },
   {
     id: 2,
-    name: 'Priya Sharma',
-    role: 'Lead Developer',
-    bio: 'Full-stack engineer who turns complex ideas into elegant, performant code. React, Node, and everything in between.',
-    avatar: 'PS',
+    name: 'Shubham Nautiyal',
+    role: 'Backend Developer',
+    bio: 'Architecting robust, scalable backends that power seamless experiences. Specialist in APIs, databases, and cloud infrastructure.',
+    avatar: 'SN',
     color: '#3B82F6',
   },
   {
     id: 3,
-    name: 'Rohan Kapoor',
-    role: 'Product Strategist',
-    bio: 'Data-driven strategist who connects business goals with user needs. Expert in conversion optimization and growth.',
-    avatar: 'RK',
+    name: 'Yuvraj',
+    role: 'Frontend Developer',
+    bio: 'Bringing designs to life with pixel-perfect precision. Expert in React, animations, and building interfaces users love to interact with.',
+    avatar: 'YV',
     color: '#10B981',
   },
-  {
-    id: 4,
-    name: 'Neha Gupta',
-    role: 'UI/UX Designer',
-    bio: 'Crafts stunning interfaces that users love. Specializes in design systems, micro-interactions, and accessibility.',
-    avatar: 'NG',
-    color: '#F59E0B',
-  },
 ];
+
 
 /* Clean SVG icons replacing emojis per taste-skill anti-emoji policy */
 const ValueIcon = ({ type }) => {
