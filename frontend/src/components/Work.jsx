@@ -7,8 +7,6 @@ import caseStudy1 from '../assets/images/case-study-1.png';
 import caseStudy2 from '../assets/images/case-study-2.png';
 import caseStudy3 from '../assets/images/case-study-3.png';
 
-const categories = ['All', 'Web Projects', 'Product Strategy'];
-
 const projects = [
   {
     id: 1,
@@ -40,12 +38,7 @@ const projects = [
 ];
 
 export default function Work() {
-  const [activeFilter, setActiveFilter] = useState('All');
   const [hoveredProject, setHoveredProject] = useState(null);
-
-  const filteredProjects = activeFilter === 'All'
-    ? projects
-    : projects.filter((p) => p.category === activeFilter);
 
   return (
     <AnimatedSection id="work">
@@ -62,32 +55,12 @@ export default function Work() {
         </div>
       </AnimatedItem>
 
-      <AnimatedItem>
-        <div className="work__filters">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              className={`work__filter ${activeFilter === cat ? 'work__filter--active' : ''}`}
-              onClick={() => setActiveFilter(cat)}
-              id={`filter-${cat.toLowerCase().replace(/\s+/g, '-')}`}
-            >
-              {cat}
-              {activeFilter === cat && (
-                <motion.span
-                  className="work__filter-indicator"
-                  layoutId="work-filter-indicator"
-                  transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-                />
-              )}
-            </button>
-          ))}
-        </div>
-      </AnimatedItem>
+
 
       {/* LTM-style asymmetric card grid with AnimatePresence */}
       <div className="work__grid">
         <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <motion.div
               key={project.id}
               layout
