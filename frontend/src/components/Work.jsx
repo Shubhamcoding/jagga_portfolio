@@ -33,7 +33,7 @@ const projects = [
   {
     id: 3,
     title: 'Yuvraj Rawat — Video Editor Portfolio',
-    category: 'Frontend Development',
+    category: 'Full Stack Development',
     image: yuvrajPortfolio,
     result: 'Live Project',
     description: 'A cinematic, high-performance video editor portfolio site built with modern web technologies. Showcases reel work with smooth transitions and immersive design.',
