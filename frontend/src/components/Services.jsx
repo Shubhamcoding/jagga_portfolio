@@ -91,23 +91,27 @@ export default function Services() {
               delay: index * 0.1,
             }}
             whileHover={{
-              y: -8,
-              transition: { type: 'spring', stiffness: 300, damping: 25 },
+              y: -12,
+              scale: 1.02,
+              transition: { type: 'spring', stiffness: 300, damping: 20 },
             }}
           >
-            <motion.div
-              className="services__card-icon"
-              animate={{
-                y: [0, -6, 0],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: index * 0.4,
-              }}
-            >
-              {service.icon}
+            <motion.div className="services__card-icon-wrapper">
+              <motion.div
+                className="services__card-icon"
+                animate={{
+                  y: [0, -4, 0],
+                  rotate: [0, -5, 5, 0]
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                  delay: index * 0.4,
+                }}
+              >
+                {service.icon}
+              </motion.div>
             </motion.div>
             <h3 className="services__card-title">{service.title}</h3>
             <p className="services__card-description">{service.description}</p>

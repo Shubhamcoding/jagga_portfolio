@@ -7,7 +7,7 @@ export default function Contact() {
   const [state, handleSubmit] = useForm("mnpaplwg");
 
   return (
-    <AnimatedSection id="contact" className="section-light">
+    <AnimatedSection id="contact" className="section-dark">
       <div className="contact__layout">
         <AnimatedItem className="contact__info">
           <h2 className="contact__heading">

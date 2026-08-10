@@ -64,7 +64,7 @@ const ValueIcon = ({ type }) => {
 
 export default function About() {
   return (
-    <AnimatedSection id="about" className="section-light">
+    <AnimatedSection id="about" className="section-dark">
       <div className="about__layout">
         <AnimatedItem className="about__story">
           <span className="section-label">About Us</span>

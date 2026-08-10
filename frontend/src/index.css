@@ -6,17 +6,12 @@
 /* --- CSS Custom Properties --- */
 :root {
   /* Colors — LTM-inspired palette */
-  --color-bg-dark: #0A0A0A;
-  --color-bg-light: #F3F4F6;
-  --color-bg-card-dark: rgba(255, 255, 255, 0.04);
-  --color-bg-card-light: #FFFFFF;
+  --color-bg: #0A0A0A;
+  --color-bg-card: rgba(255, 255, 255, 0.04);
   
-  --color-text-on-dark: #FFFFFF;
-  --color-text-on-dark-secondary: #A1A1AA;
-  --color-text-on-dark-muted: #71717A;
-  --color-text-on-light: #111827;
-  --color-text-on-light-secondary: #4B5563;
-  --color-text-on-light-muted: #9CA3AF;
+  --color-text: #FFFFFF;
+  --color-text-secondary: #A1A1AA;
+  --color-text-muted: #71717A;
   
   /* Brand Accent — Coral Red like LTM */
   --color-accent: #EE4D38;
@@ -27,11 +22,26 @@
   --color-accent-lime: #E6FF94;
   --color-accent-lime-hover: #D4F06A;
 
-  --color-border-dark: rgba(255, 255, 255, 0.12);
-  --color-border-light: rgba(0, 0, 0, 0.08);
+  --color-border: rgba(255, 255, 255, 0.12);
   
   --color-success: #10B981;
   --color-error: #EF4444;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg: #F3F4F6;
+    --color-bg-card: #FFFFFF;
+    
+    --color-text: #111827;
+    --color-text-secondary: #4B5563;
+    --color-text-muted: #9CA3AF;
+    
+    --color-border: rgba(0, 0, 0, 0.08);
+  }
+}
+
+:root {
 
   /* Typography */
   --font-heading: 'Outfit', sans-serif;
@@ -107,10 +117,22 @@ html {
 body {
   font-family: var(--font-body);
   font-size: var(--text-base);
-  color: var(--color-text-on-dark);
-  background-color: var(--color-bg-dark);
+  color: var(--color-text);
+  background-color: var(--color-bg);
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#root > main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -167,20 +189,20 @@ ul, ol {
 
 /* Dark section (default) */
 .section-dark {
-  background: var(--color-bg-dark);
-  color: var(--color-text-on-dark);
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
 /* Light section (alternating) */
 .section-light {
-  background: var(--color-bg-light);
-  color: var(--color-text-on-light);
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
 /* --- Card Styles (LTM-style: very rounded, glassmorphic on dark) --- */
 .card-dark {
-  background: var(--color-bg-card-dark);
-  border: 1px solid var(--color-border-dark);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   transition: all var(--transition-base);
   overflow: hidden;
@@ -193,7 +215,7 @@ ul, ol {
 }
 
 .card-light {
-  background: var(--color-bg-card-light);
+  background: var(--color-bg-card);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-base);
@@ -234,13 +256,13 @@ ul, ol {
 
 .btn-outline {
   background: transparent;
-  color: var(--color-text-on-dark);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: var(--color-bg-card);
+  border-color: var(--color-text);
   transform: translateY(-2px);
 }
 
@@ -288,14 +310,14 @@ ul, ol {
 
 .section-subtitle {
   font-size: var(--text-lg);
-  color: var(--color-text-on-dark-secondary);
+  color: var(--color-text-secondary);
   max-width: 560px;
   margin-top: var(--space-5);
   line-height: 1.7;
 }
 
 .section-light .section-subtitle {
-  color: var(--color-text-on-light-secondary);
+  color: var(--color-text-secondary);
 }
 
 /* --- Keyframes (kept for CSS-only elements like particles, spinners) --- */

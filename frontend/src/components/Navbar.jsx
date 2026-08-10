@@ -37,7 +37,7 @@ export default function Navbar() {
         >
           <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
             <span className="navbar__logo-text">
-              <span className="navbar__logo-accent">Jagga</span> & Co.
+              <span className="navbar__logo-accent">Jagga</span> & Co. Digital
             </span>
           </Link>
         </motion.div>

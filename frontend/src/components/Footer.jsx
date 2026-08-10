@@ -28,7 +28,7 @@ export default function Footer() {
           >
             <Link to="/" className="footer__logo" onClick={scrollToTop}>
               <span className="footer__logo-text">
-                <span className="footer__logo-accent">Jagga</span> & Co.
+                <span className="footer__logo-accent">Jagga</span> & Co. Digital
               </span>
             </Link>
             <p className="footer__tagline">
@@ -36,20 +36,6 @@ export default function Footer() {
             </p>
           </motion.div>
 
-          <motion.div
-            className="footer__links-group"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.1 }}
-          >
-            <h4 className="footer__heading">Navigation</h4>
-            <Link to="/" className="footer__link">Home</Link>
-            <Link to="/work" className="footer__link">Work</Link>
-            <Link to="/about" className="footer__link">About us</Link>
-            <Link to="/services" className="footer__link">Services</Link>
-            <Link to="/contact" className="footer__link">Contact</Link>
-          </motion.div>
 
           <motion.div
             className="footer__links-group"
