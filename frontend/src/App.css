@@ -16,7 +16,7 @@
 }
 
 .navbar--scrolled {
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(10, 10, 10, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--color-border-dark);
@@ -58,6 +58,20 @@
 .navbar__link:hover,
 .navbar__link--active {
   color: var(--color-text-on-dark);
+}
+
+.navbar__link {
+  position: relative;
+}
+
+.navbar__link-indicator {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: var(--radius-full);
 }
 
 .navbar__right {
@@ -121,7 +135,7 @@
     justify-content: center;
     gap: var(--space-6);
     padding: var(--space-8);
-    background: var(--color-bg-dark);
+    background: #0A0A0A;
     border-left: 1px solid var(--color-border-dark);
     transition: right var(--transition-base);
     z-index: 1000;
@@ -158,16 +172,14 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(100px);
-  animation: float 8s ease-in-out infinite;
 }
 
 .hero__particle--1 {
   width: 500px;
   height: 500px;
-  background: rgba(238, 77, 56, 0.15); /* Coral */
+  background: rgba(238, 77, 56, 0.15);
   top: -10%;
   right: -5%;
-  animation-delay: 0s;
 }
 
 .hero__particle--2 {
@@ -176,7 +188,6 @@
   background: rgba(238, 77, 56, 0.1);
   bottom: 0;
   left: -10%;
-  animation-delay: -4s;
 }
 
 .hero__particle--3 {
@@ -185,7 +196,10 @@
   background: rgba(255, 255, 255, 0.05);
   top: 40%;
   left: 40%;
-  animation-delay: -2s;
+}
+
+.hero__title-line {
+  display: inline-block;
 }
 
 .hero__content {
@@ -348,6 +362,18 @@
   right: 0;
   height: 2px;
   background: var(--color-accent);
+  /* Hidden: layoutId indicator from motion handles this now */
+  display: none;
+}
+
+.work__filter-indicator {
+  position: absolute;
+  bottom: calc(var(--space-4) * -1);
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: var(--radius-full);
 }
 
 .work__grid {
@@ -363,12 +389,13 @@
   flex-direction: column;
 }
 
-/* Asymmetric layout */
-.work__card:nth-child(1) { grid-column: span 8; }
-.work__card:nth-child(2) { grid-column: span 4; }
-.work__card:nth-child(3) { grid-column: span 12; flex-direction: row; }
-.work__card:nth-child(3) .work__card-image { width: 50%; height: auto; }
-.work__card:nth-child(3) .work__card-content { width: 50%; display: flex; flex-direction: column; justify-content: center; padding: var(--space-12); }
+/* Asymmetric layout — targets wrapper divs (motion.div) which are direct grid children */
+.work__grid > :nth-child(1) { grid-column: span 8; }
+.work__grid > :nth-child(2) { grid-column: span 4; }
+.work__grid > :nth-child(3) { grid-column: span 12; }
+.work__grid > :nth-child(3) .work__card { flex-direction: row; }
+.work__grid > :nth-child(3) .work__card-image { width: 50%; height: auto; }
+.work__grid > :nth-child(3) .work__card-content { width: 50%; display: flex; flex-direction: column; justify-content: center; padding: var(--space-12); }
 
 .work__card-image {
   position: relative;
@@ -535,14 +562,14 @@
 }
 
 @media (max-width: 992px) {
-  .work__card:nth-child(1), .work__card:nth-child(2), .work__card:nth-child(3) {
+  .work__grid > :nth-child(1), .work__grid > :nth-child(2), .work__grid > :nth-child(3) {
     grid-column: span 12;
   }
-  .work__card:nth-child(3) {
+  .work__grid > :nth-child(3) .work__card {
     flex-direction: column;
   }
-  .work__card:nth-child(3) .work__card-image,
-  .work__card:nth-child(3) .work__card-content {
+  .work__grid > :nth-child(3) .work__card-image,
+  .work__grid > :nth-child(3) .work__card-content {
     width: 100%;
   }
 }
@@ -766,6 +793,16 @@
 .contact__submit {
   align-self: flex-start;
   margin-top: var(--space-2);
+}
+
+.contact__spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
 }
 
 .contact__status {

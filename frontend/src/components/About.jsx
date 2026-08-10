@@ -1,4 +1,5 @@
-import SectionWrapper from './SectionWrapper';
+import { motion } from 'motion/react';
+import AnimatedSection, { AnimatedItem } from './AnimatedSection';
 
 const team = [
   {
@@ -35,11 +36,37 @@ const team = [
   },
 ];
 
+/* Clean SVG icons replacing emojis per taste-skill anti-emoji policy */
+const ValueIcon = ({ type }) => {
+  const icons = {
+    target: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="6" />
+        <circle cx="12" cy="12" r="2" />
+      </svg>
+    ),
+    bolt: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+      </svg>
+    ),
+    gem: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M6 3h12l4 6-10 13L2 9z" />
+        <path d="M2 9h20" />
+        <path d="M12 22L8 9l4-6 4 6z" />
+      </svg>
+    ),
+  };
+  return icons[type] || null;
+};
+
 export default function About() {
   return (
-    <SectionWrapper id="about" className="section-light">
+    <AnimatedSection id="about" className="section-light">
       <div className="about__layout">
-        <div className="about__story animate-on-scroll">
+        <AnimatedItem className="about__story">
           <span className="section-label">About Us</span>
           <h2 className="section-title">
             We're <span className="accent-text">Jagga & Co.</span>
@@ -55,53 +82,79 @@ export default function About() {
             test, and iterate until the result is undeniably excellent.
           </p>
           <div className="about__values">
-            <div className="about__value">
-              <div className="about__value-icon">🎯</div>
-              <div>
-                <h4 className="about__value-title">Strategy First</h4>
-                <p className="about__value-desc">Research and data drive every decision.</p>
-              </div>
-            </div>
-            <div className="about__value">
-              <div className="about__value-icon">⚡</div>
-              <div>
-                <h4 className="about__value-title">Built for Speed</h4>
-                <p className="about__value-desc">Sub-second load times, always.</p>
-              </div>
-            </div>
-            <div className="about__value">
-              <div className="about__value-icon">💎</div>
-              <div>
-                <h4 className="about__value-title">Pixel Perfect</h4>
-                <p className="about__value-desc">Every detail is intentional and polished.</p>
-              </div>
-            </div>
+            {[
+              { icon: 'target', title: 'Strategy First', desc: 'Research and data drive every decision.' },
+              { icon: 'bolt', title: 'Built for Speed', desc: 'Sub-second load times, always.' },
+              { icon: 'gem', title: 'Pixel Perfect', desc: 'Every detail is intentional and polished.' },
+            ].map((value, index) => (
+              <motion.div
+                key={value.title}
+                className="about__value"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 80,
+                  damping: 18,
+                  delay: index * 0.12,
+                }}
+              >
+                <div className="about__value-icon">
+                  <ValueIcon type={value.icon} />
+                </div>
+                <div>
+                  <h4 className="about__value-title">{value.title}</h4>
+                  <p className="about__value-desc">{value.desc}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
-        </div>
+        </AnimatedItem>
 
         <div className="about__team">
-          <h3 className="about__team-heading animate-on-scroll">Meet the Team</h3>
+          <AnimatedItem>
+            <h3 className="about__team-heading">Meet the Team</h3>
+          </AnimatedItem>
           <div className="about__team-grid">
             {team.map((member, index) => (
-              <div
+              <motion.div
                 key={member.id}
-                className={`about__member card-light animate-on-scroll stagger-${index + 1}`}
+                className="about__member card-light"
                 id={`team-member-${member.id}`}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 80,
+                  damping: 18,
+                  delay: index * 0.1,
+                }}
+                whileHover={{
+                  y: -6,
+                  transition: { type: 'spring', stiffness: 300, damping: 25 },
+                }}
               >
-                <div
+                <motion.div
                   className="about__member-avatar"
                   style={{ background: member.color }}
+                  whileHover={{
+                    scale: 1.1,
+                    boxShadow: `0 0 24px ${member.color}50`,
+                    transition: { type: 'spring', stiffness: 300, damping: 20 },
+                  }}
                 >
                   {member.avatar}
-                </div>
+                </motion.div>
                 <h4 className="about__member-name">{member.name}</h4>
                 <span className="about__member-role">{member.role}</span>
                 <p className="about__member-bio">{member.bio}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
-    </SectionWrapper>
+    </AnimatedSection>
   );
 }

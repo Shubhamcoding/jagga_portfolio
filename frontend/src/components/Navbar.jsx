@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 
 const navLinks = [
   { id: 'home', label: 'Home' },
@@ -48,13 +49,24 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
+    <motion.nav
+      className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.2 }}
+    >
       <div className="navbar__inner container">
-        <a href="#home" className="navbar__logo" onClick={(e) => handleClick(e, 'home')}>
+        <motion.a
+          href="#home"
+          className="navbar__logo"
+          onClick={(e) => handleClick(e, 'home')}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.97 }}
+        >
           <span className="navbar__logo-text">
             <span className="navbar__logo-accent">Jagga</span> & Co.
           </span>
-        </a>
+        </motion.a>
 
         <div className={`navbar__links ${menuOpen ? 'navbar__links--open' : ''}`}>
           {navLinks.map(({ id, label }) => (
@@ -65,18 +77,27 @@ export default function Navbar() {
               onClick={(e) => handleClick(e, id)}
             >
               {label}
+              {activeSection === id && (
+                <motion.span
+                  className="navbar__link-indicator"
+                  layoutId="nav-indicator"
+                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                />
+              )}
             </a>
           ))}
         </div>
 
         <div className="navbar__right">
-          <a
+          <motion.a
             href="#contact"
             className="btn btn-outline navbar__cta"
             onClick={(e) => handleClick(e, 'contact')}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.96 }}
           >
             Contact
-          </a>
+          </motion.a>
         </div>
 
         <button
@@ -91,7 +112,18 @@ export default function Navbar() {
         </button>
       </div>
 
-      {menuOpen && <div className="navbar__overlay" onClick={() => setMenuOpen(false)} />}
-    </nav>
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="navbar__overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 }

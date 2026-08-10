@@ -1,4 +1,5 @@
-import SectionWrapper from './SectionWrapper';
+import { motion } from 'motion/react';
+import AnimatedSection, { AnimatedItem } from './AnimatedSection';
 
 const services = [
   {
@@ -59,38 +60,76 @@ const services = [
 
 export default function Services() {
   return (
-    <SectionWrapper id="services">
-      <div className="section-header animate-on-scroll">
-        <span className="section-label">What We Do</span>
-        <h2 className="section-title">
-          Markets and <span className="accent-text">Capabilities</span>
-        </h2>
-        <p className="section-subtitle">
-          End-to-end digital solutions. From strategy to design to development,
-          we cover every pixel of the journey.
-        </p>
-      </div>
+    <AnimatedSection id="services">
+      <AnimatedItem>
+        <div className="section-header">
+          <span className="section-label">What We Do</span>
+          <h2 className="section-title">
+            Markets and <span className="accent-text">Capabilities</span>
+          </h2>
+          <p className="section-subtitle">
+            End-to-end digital solutions. From strategy to design to development,
+            we cover every pixel of the journey.
+          </p>
+        </div>
+      </AnimatedItem>
 
       <div className="services__grid">
         {services.map((service, index) => (
-          <div
+          <motion.div
             key={service.id}
-            className={`services__card card-dark animate-on-scroll stagger-${index + 1}`}
+            className="services__card card-dark"
             id={`service-card-${service.id}`}
+            initial={{ opacity: 0, y: 50, filter: 'blur(4px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{
+              type: 'spring',
+              stiffness: 80,
+              damping: 20,
+              delay: index * 0.1,
+            }}
+            whileHover={{
+              y: -8,
+              transition: { type: 'spring', stiffness: 300, damping: 25 },
+            }}
           >
-            <div className="services__card-icon">
+            <motion.div
+              className="services__card-icon"
+              animate={{
+                y: [0, -6, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: 'easeInOut',
+                delay: index * 0.4,
+              }}
+            >
               {service.icon}
-            </div>
+            </motion.div>
             <h3 className="services__card-title">{service.title}</h3>
             <p className="services__card-description">{service.description}</p>
             <ul className="services__card-features">
-              {service.features.map((feature) => (
-                <li key={feature} className="services__card-feature">
+              {service.features.map((feature, featureIndex) => (
+                <motion.li
+                  key={feature}
+                  className="services__card-feature"
+                  initial={{ opacity: 0, x: -15 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 18,
+                    delay: index * 0.1 + featureIndex * 0.06,
+                  }}
+                >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2.5">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                   {feature}
-                </li>
+                </motion.li>
               ))}
             </ul>
             <a href="#contact" className="services__card-link">
@@ -100,9 +139,9 @@ export default function Services() {
               </svg>
               Read more
             </a>
-          </div>
+          </motion.div>
         ))}
       </div>
-    </SectionWrapper>
+    </AnimatedSection>
   );
 }
