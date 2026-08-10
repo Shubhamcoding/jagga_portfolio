@@ -1,45 +1,10 @@
-import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useForm, ValidationError } from '@formspree/react';
 import AnimatedSection, { AnimatedItem } from './AnimatedSection';
 import MagneticButton from './MagneticButton';
 
-const API_URL = 'http://localhost:5000/api/contact';
-
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState('idle');
-  const [errorMessage, setErrorMessage] = useState('');
-
-  const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus('sending');
-    setErrorMessage('');
-
-    try {
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || 'Something went wrong');
-      }
-
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setStatus('idle'), 5000);
-    } catch (err) {
-      setStatus('error');
-      setErrorMessage(err.message);
-      setTimeout(() => setStatus('idle'), 5000);
-    }
-  };
+  const [state, handleSubmit] = useForm("mnpaplwg");
 
   return (
     <AnimatedSection id="contact" className="section-light">
@@ -76,12 +41,11 @@ export default function Contact() {
                 type="text"
                 id="contact-name"
                 name="name"
-                value={formData.name}
-                onChange={handleChange}
                 placeholder="Full Name*"
                 required
                 className="contact__input"
               />
+              <ValidationError prefix="Name" field="name" errors={state.errors} />
             </motion.div>
             <motion.div
               className="contact__form-group"
@@ -94,12 +58,11 @@ export default function Contact() {
                 type="email"
                 id="contact-email"
                 name="email"
-                value={formData.email}
-                onChange={handleChange}
                 placeholder="Email Address*"
                 required
                 className="contact__input"
               />
+              <ValidationError prefix="Email" field="email" errors={state.errors} />
             </motion.div>
           </div>
 
@@ -113,23 +76,22 @@ export default function Contact() {
             <textarea
               id="contact-message"
               name="message"
-              value={formData.message}
-              onChange={handleChange}
               placeholder="Let us know how we can help you*"
               required
               rows="4"
               className="contact__input contact__textarea"
             />
+            <ValidationError prefix="Message" field="message" errors={state.errors} />
           </motion.div>
 
           <MagneticButton
             type="submit"
             className="btn btn-primary contact__submit"
-            disabled={status === 'sending'}
+            disabled={state.submitting}
             id="contact-submit"
             strength={0.25}
           >
-            {status === 'sending' ? (
+            {state.submitting ? (
               <>
                 <span className="contact__spinner" />
                 Sending...
@@ -146,7 +108,7 @@ export default function Contact() {
           </MagneticButton>
 
           <AnimatePresence mode="wait">
-            {status === 'success' && (
+            {state.succeeded && (
               <motion.div
                 key="success"
                 className="contact__status contact__status--success"
@@ -158,7 +120,7 @@ export default function Contact() {
                 Message sent successfully! We'll get back to you within 24 hours.
               </motion.div>
             )}
-            {status === 'error' && (
+            {state.errors && state.errors.length > 0 && (
               <motion.div
                 key="error"
                 className="contact__status contact__status--error"
@@ -167,7 +129,7 @@ export default function Contact() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 20 }}
               >
-                {errorMessage || 'Failed to send. Please try again.'}
+                Failed to send. Please check the fields and try again.
               </motion.div>
             )}
           </AnimatePresence>
