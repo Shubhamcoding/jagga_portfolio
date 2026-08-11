@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, animate } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import MagneticButton from './MagneticButton';
-import heroBg from '../assets/images/hero-bg.png';
+import heroBg from '../assets/images/hero-bg.mp4';
 
 /* Animated counter that counts up from 0 to the target value */
 function CountUp({ target, suffix = '' }) {
@@ -71,7 +71,16 @@ export default function Hero() {
           transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 0.3 }}
         >
           <div className="hero__card-bg">
-            <img src={heroBg} alt="" className="hero__card-img" />
+            <video
+              src={heroBg}
+              className="hero__card-img"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-hidden="true"
+            />
             <div className="hero__card-overlay" />
           </div>
           <div className="hero__card-content">
