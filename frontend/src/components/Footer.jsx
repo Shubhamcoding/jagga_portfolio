@@ -26,11 +26,9 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 80, damping: 18 }}
           >
-            <Link to="/" className="footer__logo" onClick={scrollToTop}>
-              <span className="footer__logo-text">
-                <span className="footer__logo-accent">Jagga</span> & Co. Digital
-              </span>
-            </Link>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1rem', color: 'var(--color-text)' }}>
+              Let's build something great.
+            </h3>
             <p className="footer__tagline">
               Crafting digital experiences that convert. Strategy. Design. Code.
             </p>

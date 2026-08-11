@@ -29,8 +29,8 @@ function CountUp({ target, suffix = '' }) {
   return <span ref={nodeRef}>0{suffix}</span>;
 }
 
-const heroTitleLine1 = "It's time to";
-const heroTitleLine2 = "Outcreate";
+const heroTitleLine1 = "Your Vision. Our Code.";
+const heroTitleLine2 = "Measurable Results.";
 
 export default function Hero() {
   const sectionRef = useRef(null);
