@@ -17,6 +17,7 @@ const team = [
     bio: 'Architecting robust, scalable backends that power seamless experiences. Specialist in APIs, databases, and cloud infrastructure.',
     avatar: 'SN',
     color: '#3B82F6',
+    linkedin: 'https://www.linkedin.com/in/shubham-nautiyal-7869992a7/',
   },
   {
     id: 3,
@@ -25,6 +26,7 @@ const team = [
     bio: 'Bringing designs to life with pixel-perfect precision. Expert in React, animations, and building interfaces users love to interact with.',
     avatar: 'YV',
     color: '#10B981',
+    linkedin: 'https://www.linkedin.com/in/yuvraj-nln-340147167/',
   },
 ];
 
@@ -110,11 +112,17 @@ export default function About() {
             <h3 className="about__team-heading">Meet the Team</h3>
           </AnimatedItem>
           <div className="about__team-grid">
-            {team.map((member, index) => (
-              <motion.div
+            {team.map((member, index) => {
+              const CardWrapper = member.linkedin ? motion.a : motion.div;
+              return (
+              <CardWrapper
                 key={member.id}
+                href={member.linkedin}
+                target={member.linkedin ? "_blank" : undefined}
+                rel={member.linkedin ? "noopener noreferrer" : undefined}
                 className="about__member card-light"
                 id={`team-member-${member.id}`}
+                style={member.linkedin ? { textDecoration: 'none', color: 'inherit', display: 'block', cursor: 'pointer' } : {}}
                 initial={{ opacity: 0, y: 40, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: '-40px' }}
@@ -143,8 +151,8 @@ export default function About() {
                 <h4 className="about__member-name">{member.name}</h4>
                 <span className="about__member-role">{member.role}</span>
                 <p className="about__member-bio">{member.bio}</p>
-              </motion.div>
-            ))}
+              </CardWrapper>
+            )})}
           </div>
         </div>
       </div>

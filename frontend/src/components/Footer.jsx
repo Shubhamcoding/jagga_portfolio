@@ -27,7 +27,7 @@ export default function Footer() {
             transition={{ type: 'spring', stiffness: 80, damping: 18 }}
           >
             <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1rem', color: 'var(--color-text)' }}>
-              Let's build something great.
+              Let's build something <span className="accent-text">great.</span>
             </h3>
             <p className="footer__tagline">
               Crafting digital experiences that convert. Strategy. Design. Code.
