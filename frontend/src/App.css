@@ -1118,8 +1118,9 @@
 }
 
 .footer__top {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   gap: var(--space-12);
   margin-bottom: var(--space-10);
 }
@@ -1209,18 +1210,13 @@
 
 @media (max-width: 992px) {
   .footer__top {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .footer__brand {
-    grid-column: 1 / -1;
+    flex-direction: column;
+    gap: var(--space-8);
   }
 }
 
 @media (max-width: 480px) {
-  .footer__top {
-    grid-template-columns: 1fr;
-  }
+  /* No additional changes needed since flex-direction is already column */
 }
 
 /* ===== LIGHT MODE PREFERENCES ===== */

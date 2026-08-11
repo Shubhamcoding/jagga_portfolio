@@ -35,19 +35,7 @@ export default function Footer() {
           </motion.div>
 
 
-          <motion.div
-            className="footer__links-group"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.2 }}
-          >
-            <h4 className="footer__heading">Services</h4>
-            <Link to="/services" className="footer__link">Web Projects</Link>
-            <Link to="/services" className="footer__link">Product Strategy</Link>
-            <Link to="/services" className="footer__link">Custom Development</Link>
-            <Link to="/services" className="footer__link">Interface Design</Link>
-          </motion.div>
+
 
           <motion.div
             className="footer__links-group"
