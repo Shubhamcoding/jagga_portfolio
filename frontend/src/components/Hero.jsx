@@ -132,12 +132,9 @@ export default function Hero() {
               </MagneticButton>
               <MagneticButton
                 className="btn btn-outline"
-                onClick={() => handleNavigate('/contact')}
+                onClick={() => handleNavigate('/about')}
               >
-                Watch Now
-                <svg className="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="5 3 19 12 5 21 5 3" />
-                </svg>
+                About Us
               </MagneticButton>
             </motion.div>
           </div>
@@ -154,7 +151,7 @@ export default function Hero() {
         >
           <div className="hero__stat">
             <span className="hero__stat-number">
-              {statsVisible ? <CountUp target={50} suffix="+" /> : '0+'}
+              {statsVisible ? <CountUp target={30} suffix="+" /> : '0+'}
             </span>
             <span className="hero__stat-label">Projects Delivered</span>
           </div>
@@ -168,9 +165,9 @@ export default function Hero() {
           <div className="hero__stat-divider" />
           <div className="hero__stat">
             <span className="hero__stat-number">
-              {statsVisible ? <CountUp target={3} suffix="x" /> : '0x'}
+              {statsVisible ? <CountUp target={2} suffix="x" /> : '0x'}
             </span>
-            <span className="hero__stat-label">Avg. ROI Increase</span>
+            <span className="hero__stat-label">Avg. Efficiency Increase</span>
           </div>
         </motion.div>
       </div>
