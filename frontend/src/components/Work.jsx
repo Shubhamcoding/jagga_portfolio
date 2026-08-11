@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import AnimatedSection, { AnimatedItem } from './AnimatedSection';
 import AnimatedCard from './AnimatedCard';
 import ProjectModal from './ProjectModal';
-import caseStudy1 from '../assets/images/case-study-1.png';
 import trainerWebsite from '../assets/images/ss3.png';
 import yuvrajPortfolio from '../assets/images/ss.png';
 import phoenixProject from '../assets/images/ss2.png';
