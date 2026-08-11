@@ -5,7 +5,7 @@ import AnimatedSection, { AnimatedItem } from './AnimatedSection';
 import AnimatedCard from './AnimatedCard';
 import ProjectModal from './ProjectModal';
 import caseStudy1 from '../assets/images/case-study-1.png';
-import caseStudy2 from '../assets/images/case-study-2.png';
+import trainerWebsite from '../assets/images/ss3.png';
 import yuvrajPortfolio from '../assets/images/ss.png';
 import phoenixProject from '../assets/images/ss2.png';
 
@@ -22,13 +22,13 @@ const projects = [
   },
   {
     id: 2,
-    title: 'FinTrack Dashboard App',
-    category: 'Product Strategy',
-    image: caseStudy2,
-    result: '+220% User Engagement',
-    description: 'Comprehensive mobile analytics dashboard. 30+ user interviews defined optimal data visualization.',
-    approach: 'Discovery calls revealed users needed real-time insights on mobile. We designed a gesture-first interface.',
-    url: null,
+    title: 'Personal Trainer Website',
+    category: 'Web Development',
+    image: trainerWebsite,
+    result: 'Live Project',
+    description: 'A modern, high-conversion website for a personal trainer. Showcases services, testimonials, and contact options clearly.',
+    approach: 'Designed with a focus on conversion optimization, fast loading times, and a responsive layout for mobile users.',
+    url: 'https://areterex-fitness.vercel.app/',
   },
   {
     id: 3,
