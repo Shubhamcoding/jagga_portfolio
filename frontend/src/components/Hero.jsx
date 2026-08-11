@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useMotionValue, useSpring, animate } f
 import { useNavigate } from 'react-router-dom';
 import MagneticButton from './MagneticButton';
 import heroBg from '../assets/images/hero-bg.mp4';
-import heroBgPoster from '../assets/images/hero-bg-poster.jpg';
+import heroBgPoster from '../assets/images/hero-bg-poster.png';
 
 /* Animated counter that counts up from 0 to the target value */
 function CountUp({ target, suffix = '' }) {
