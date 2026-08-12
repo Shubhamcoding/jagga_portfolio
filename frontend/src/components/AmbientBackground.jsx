@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 
 const orbs = [
@@ -59,13 +59,14 @@ const orbs = [
   },
 ];
 
-function FloatingOrb({ orb }) {
+function FloatingOrb({ orb, isMobile }) {
+  const orbSize = isMobile ? Math.round(orb.size * 0.6) : orb.size;
   return (
     <motion.div
       style={{
         position: 'fixed',
-        width: orb.size,
-        height: orb.size,
+        width: orbSize,
+        height: orbSize,
         borderRadius: '50%',
         background: orb.color,
         left: orb.initialX,
@@ -93,6 +94,7 @@ function FloatingOrb({ orb }) {
 
 export default function AmbientBackground() {
   const [hasMouse, setHasMouse] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const mouseX = useMotionValue(-500);
   const mouseY = useMotionValue(-500);
 
@@ -102,6 +104,11 @@ export default function AmbientBackground() {
   const smoothY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
+    // Detect mobile/tablet on mount and on resize
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile, { passive: true });
+
     const handleMouseMove = (e) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -117,10 +124,18 @@ export default function AmbientBackground() {
     document.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
+      window.removeEventListener('resize', checkMobile);
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, [hasMouse, mouseX, mouseY]);
+
+  /* On mobile: show only the 2 most impactful orbs (coral + blue) and scale them down.
+     On desktop: show all 5 for the full ambient experience. */
+  const visibleOrbs = useMemo(
+    () => (isMobile ? orbs.slice(0, 2) : orbs),
+    [isMobile]
+  );
 
   return (
     <div
@@ -134,12 +149,12 @@ export default function AmbientBackground() {
       }}
     >
       {/* Drifting Ambient Gradient Orbs */}
-      {orbs.map((orb) => (
-        <FloatingOrb key={orb.id} orb={orb} />
+      {visibleOrbs.map((orb) => (
+        <FloatingOrb key={orb.id} orb={orb} isMobile={isMobile} />
       ))}
 
-      {/* Interactive Cursor Spotlight Glow */}
-      {hasMouse && (
+      {/* Interactive Cursor Spotlight Glow — desktop only */}
+      {hasMouse && !isMobile && (
         <motion.div
           style={{
             position: 'fixed',
@@ -177,3 +192,4 @@ export default function AmbientBackground() {
     </div>
   );
 }
+

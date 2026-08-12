@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import AnimatedSection, { AnimatedItem } from './AnimatedSection';
 import AnimatedCard from './AnimatedCard';
 import ProjectModal from './ProjectModal';
-import trainerWebsite from '../assets/images/ss3.png';
-import yuvrajPortfolio from '../assets/images/ss.png';
-import phoenixProject from '../assets/images/ss2.png';
+import trainerWebsite from '../assets/images/ss3-opt.jpg';
+import yuvrajPortfolio from '../assets/images/ss-opt.jpg';
+import phoenixProject from '../assets/images/ss2-opt.jpg';
 
 const projects = [
   {

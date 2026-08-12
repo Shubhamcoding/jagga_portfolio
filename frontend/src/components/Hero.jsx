@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useMotionValue, useSpring, animate } f
 import { useNavigate } from 'react-router-dom';
 import MagneticButton from './MagneticButton';
 import heroBg from '../assets/images/hero-bg.mp4';
-import heroBgPoster from '../assets/images/hero-bg-poster.png';
+import heroBgPoster from '../assets/images/hero-bg-poster-opt.jpg';
 
 /* Animated counter that counts up from 0 to the target value */
 function CountUp({ target, suffix = '' }) {
@@ -67,9 +67,9 @@ export default function Hero() {
         {/* Main hero card */}
         <motion.div
           className="hero__card"
-          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          initial={{ opacity: 0, scale: 0.97, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 0.3 }}
+          transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.15 }}
         >
           <div className="hero__card-bg">
             <video
@@ -91,7 +91,7 @@ export default function Hero() {
                 className="hero__title-line"
                 initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                transition={{ type: 'spring', stiffness: 70, damping: 16, delay: 0.6 }}
+                transition={{ type: 'spring', stiffness: 70, damping: 16, delay: 0.3 }}
               >
                 {heroTitleLine1}
               </motion.span>
@@ -100,7 +100,7 @@ export default function Hero() {
                 className="accent-text hero__title-line"
                 initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                transition={{ type: 'spring', stiffness: 70, damping: 16, delay: 0.85 }}
+                transition={{ type: 'spring', stiffness: 70, damping: 16, delay: 0.45 }}
               >
                 {heroTitleLine2}
               </motion.span>
@@ -109,7 +109,7 @@ export default function Hero() {
               className="hero__subtitle"
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 1.1 }}
+              transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 0.55 }}
             >
               We bring human insights and intelligent systems together.
               So that you don't simply outperform the market, you Outcreate it.
@@ -118,7 +118,7 @@ export default function Hero() {
               className="hero__actions"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 1.35 }}
+              transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 0.7 }}
             >
               <MagneticButton
                 className="btn btn-primary"
@@ -145,7 +145,7 @@ export default function Hero() {
           className="hero__stats"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 1.6 }}
+          transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 0.9 }}
           onViewportEnter={() => setStatsVisible(true)}
           viewport={{ once: true }}
         >
