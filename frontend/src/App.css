@@ -598,7 +598,8 @@
   translate: -50% -50%;
   z-index: 2001;
   width: min(1200px, 92vw);
-  height: min(800px, 88vh);
+  /* Use dvh to prevent cutoff from dynamic browser toolbars on mobile/tablet */
+  height: min(800px, 88dvh);
   display: flex;
   flex-direction: column;
   border-radius: var(--radius-xl);
@@ -714,7 +715,7 @@
 @media (max-width: 768px) {
   .project-modal {
     width: 96vw;
-    height: 90vh;
+    height: 90dvh;
     border-radius: var(--radius-lg);
   }
 
@@ -725,8 +726,9 @@
 
 @media (max-width: 480px) {
   .project-modal {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    /* Use 100dvh so the modal dynamically resizes when the URL bar appears/disappears */
+    height: 100dvh;
     border-radius: 0;
   }
 
