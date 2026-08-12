@@ -351,11 +351,20 @@ ul, ol {
 }
 
 /* --- Responsive --- */
+@media (max-width: 992px) {
+  :root {
+    --text-5xl: 2.75rem;
+    --text-6xl: 3.25rem;
+    --text-7xl: 4rem;
+  }
+}
+
 @media (max-width: 768px) {
   :root {
     --text-5xl: 2.5rem;
     --text-6xl: 3rem;
     --text-7xl: 3.5rem;
+    --nav-height: 64px;
   }
   
   .section-padding {
@@ -372,5 +381,13 @@ ul, ol {
     --text-5xl: 2rem;
     --text-6xl: 2.5rem;
     --text-7xl: 3rem;
+  }
+
+  .section-padding {
+    padding: var(--space-12) 0;
+  }
+
+  .container {
+    padding: 0 var(--space-4);
   }
 }
