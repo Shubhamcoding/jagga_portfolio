@@ -13,9 +13,13 @@ export default defineConfig({
         /* Split vendor libraries into a separate chunk so they are cached
            independently from your app code. On repeat visits, only the
            small app chunk needs re-downloading. */
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          motion: ['motion'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('motion')) {
+              return 'motion';
+            }
+            return 'vendor';
+          }
         },
       },
     },
