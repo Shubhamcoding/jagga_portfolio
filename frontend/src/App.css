@@ -1093,9 +1093,9 @@
   /* Performance optimizations */
   will-change: transform, margin, box-shadow;
 
-  /* OVERRIDE: Use a solid background instead of transparent glass. 
-     This completely stops the text from the cards behind from bleeding through! */
-  background: #111111 !important;
+  /* OVERRIDE: Use the solid theme background instead of transparent glass. 
+     This adapts to Light/Dark mode while completely stopping text from bleeding through! */
+  background: var(--color-bg) !important;
   
   box-shadow: -15px 0 30px rgba(0, 0, 0, 0.4);
   z-index: 1;
