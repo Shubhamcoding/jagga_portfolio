@@ -1090,11 +1090,13 @@
     box-shadow 0.4s ease 0s,
     border-color 0.4s ease 0s;
 
-  /* Performance optimizations for 60FPS animations */
+  /* Performance optimizations */
   will-change: transform, margin, box-shadow;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
 
+  /* OVERRIDE: Use a solid background instead of transparent glass. 
+     This completely stops the text from the cards behind from bleeding through! */
+  background: #111111 !important;
+  
   box-shadow: -15px 0 30px rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
