@@ -81,19 +81,12 @@ export default function Services() {
             key={service.id}
             className="services__card card-dark"
             id={`service-card-${service.id}`}
-            initial={{ opacity: 0, y: 50, filter: 'blur(4px)' }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            initial={{ opacity: 0, filter: 'blur(4px)' }}
+            whileInView={{ opacity: 1, filter: 'blur(0px)' }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{
-              type: 'spring',
-              stiffness: 80,
-              damping: 20,
+              duration: 0.6,
               delay: index * 0.1,
-            }}
-            whileHover={{
-              y: -12,
-              scale: 1.02,
-              transition: { type: 'spring', stiffness: 300, damping: 20 },
             }}
           >
             <motion.div className="services__card-icon-wrapper">
