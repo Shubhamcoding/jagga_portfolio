@@ -1,0 +1,1 @@
+/Users/shubhamnautiyal/Documents/Obsidian Vault/Global Vault/Jagga-Portfolio.md
