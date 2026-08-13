@@ -1,28 +1,59 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { NavLink, Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
-  { id: '', label: 'Home' },
+  { id: 'home', label: 'Home' },
+  { id: 'services', label: 'Services' },
   { id: 'work', label: 'Work' },
   { id: 'about', label: 'About us' },
-  { id: 'services', label: 'Services' },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
-  const currentPath = location.pathname.substring(1) || '';
+  const [activeId, setActiveId] = useState('home');
   
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
   const linksRef = useRef([]);
 
   useEffect(() => {
-    const activeIndex = navLinks.findIndex(link => link.id === currentPath);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      const sections = navLinks.map(link => document.getElementById(link.id)).filter(Boolean);
+      const contactSection = document.getElementById('contact');
+      if (contactSection) sections.push(contactSection);
+
+      const scrollPosition = window.scrollY + 150; // offset for navbar
+
+      let currentActiveId = activeId;
+      for (const section of sections) {
+        if (section.offsetTop <= scrollPosition && (section.offsetTop + section.offsetHeight) > scrollPosition) {
+          currentActiveId = section.id;
+        }
+      }
+      
+      // If at bottom, contact might be active
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+        currentActiveId = 'contact';
+      }
+
+      if (currentActiveId && (navLinks.some(link => link.id === currentActiveId) || currentActiveId === 'contact')) {
+         setActiveId(currentActiveId);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Initial call
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [activeId]);
+
+  useEffect(() => {
+    const activeIndex = navLinks.findIndex(link => link.id === activeId);
     const activeEl = linksRef.current[activeIndex];
     
-    // We use a small timeout to ensure layout is calculated, though usually immediate is fine.
     const updateIndicator = () => {
       if (activeEl) {
         setIndicatorStyle({
@@ -35,37 +66,28 @@ export default function Navbar() {
       }
     };
     
-    // Update immediately and also after a tiny delay for font-loads if any
     updateIndicator();
     const timeout = setTimeout(updateIndicator, 50);
-    return () => clearTimeout(timeout);
-  }, [currentPath]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
     
-    // Also handle window resize for the indicator
-    const handleResize = () => {
-      const activeIndex = navLinks.findIndex(link => link.id === currentPath);
-      const activeEl = linksRef.current[activeIndex];
-      if (activeEl) {
-        setIndicatorStyle(prev => ({
-          ...prev,
-          left: activeEl.offsetLeft,
-          width: activeEl.offsetWidth,
-        }));
-      }
-    };
+    const handleResize = () => updateIndicator();
     window.addEventListener('resize', handleResize);
     
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeout);
       window.removeEventListener('resize', handleResize);
     };
-  }, [currentPath]);
+  }, [activeId]);
+
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      // Update URL hash without jumping
+      window.history.pushState(null, '', `#${id}`);
+    }
+  };
 
   return (
     <motion.nav
@@ -76,29 +98,29 @@ export default function Navbar() {
     >
       <div className="navbar__inner container">
         <motion.div
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.97 }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
-          <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
+          <a href="#home" className="navbar__logo" onClick={(e) => scrollToSection(e, 'home')}>
             <span className="navbar__logo-text">
               <span className="navbar__logo-accent">Jagga</span> & Co. Digital
             </span>
-          </Link>
+          </a>
         </motion.div>
 
         <div className={`navbar__links ${menuOpen ? 'navbar__links--open' : ''}`}>
           {navLinks.map(({ id, label }, index) => {
-            const isActive = currentPath === id;
+            const isActive = activeId === id;
             return (
-              <NavLink
+              <a
                 key={id}
-                to={`/${id}`}
+                href={`#${id}`}
                 ref={el => linksRef.current[index] = el}
-                className={({ isActive }) => `navbar__link ${isActive ? 'navbar__link--active' : ''}`}
-                onClick={() => setMenuOpen(false)}
+                className={`navbar__link ${isActive ? 'navbar__link--active' : ''}`}
+                onClick={(e) => scrollToSection(e, id)}
               >
                 {label}
-              </NavLink>
+              </a>
             );
           })}
           <motion.span
@@ -111,16 +133,16 @@ export default function Navbar() {
 
         <div className="navbar__right">
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.96 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
-            <Link
-              to="/contact"
+            <a
+              href="#contact"
               className="btn btn-outline navbar__cta"
-              onClick={() => setMenuOpen(false)}
+              onClick={(e) => scrollToSection(e, 'contact')}
             >
-              Contact
-            </Link>
+              Get in Touch
+            </a>
           </motion.div>
         </div>
 

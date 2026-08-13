@@ -1,11 +1,12 @@
-import { motion } from 'motion/react';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 
 const sectionVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
     },
   },
 };
@@ -13,8 +14,8 @@ const sectionVariants = {
 const childVariants = {
   hidden: {
     opacity: 0,
-    y: 40,
-    filter: 'blur(4px)',
+    y: 30,
+    filter: 'blur(3px)',
   },
   visible: {
     opacity: 1,
@@ -22,9 +23,9 @@ const childVariants = {
     filter: 'blur(0px)',
     transition: {
       type: 'spring',
-      stiffness: 80,
-      damping: 20,
-      mass: 0.8,
+      stiffness: 100,
+      damping: 18,
+      mass: 0.6,
     },
   },
 };
@@ -41,7 +42,7 @@ export default function AnimatedSection({ children, id, className = '' }) {
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
+      viewport={{ once: true, amount: 0.1 }}
     >
       <div className="container">
         {children}

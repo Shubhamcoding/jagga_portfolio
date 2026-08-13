@@ -1,6 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, animate } from 'motion/react';
-import { useNavigate } from 'react-router-dom';
 import MagneticButton from './MagneticButton';
 import heroBg from '../assets/images/hero-bg.mp4';
 import heroBgPoster from '../assets/images/hero-bg-poster-opt.jpg';
@@ -40,91 +39,75 @@ export default function Hero() {
     offset: ['start start', 'end start'],
   });
 
-  // Parallax for particles — drift at different speeds
-  const particle1Y = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const particle2Y = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const particle3Y = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const particle1Y = useTransform(scrollYProgress, [0, 1], [0, -60]);
 
-  // Track whether stats are in view for count-up trigger
   const [statsVisible, setStatsVisible] = useState(false);
 
-  const navigate = useNavigate();
-
   const handleNavigate = (path) => {
-    navigate(path);
+    const id = path.substring(1); // remove '/'
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <section id="home" className="hero" ref={sectionRef}>
-      {/* Coral particle wave background with parallax */}
       <div className="hero__particles">
         <motion.div className="hero__particle hero__particle--1" style={{ y: particle1Y }} />
-        <motion.div className="hero__particle hero__particle--2" style={{ y: particle2Y }} />
-        <motion.div className="hero__particle hero__particle--3" style={{ y: particle3Y }} />
       </div>
 
       <div className="hero__content container">
         {/* Main hero card */}
         <motion.div
           className="hero__card"
-          initial={{ opacity: 0, scale: 0.97, y: 20 }}
+          initial={{ opacity: 0, scale: 0.98, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.15 }}
         >
           <div className="hero__card-bg">
-            <video
-              src={heroBg}
-              className="hero__card-img"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              aria-hidden="true"
-              poster={heroBgPoster}
-            />
             <div className="hero__card-overlay" />
           </div>
           <div className="hero__card-content">
             <h1 className="hero__title">
               <motion.span
                 className="hero__title-line"
-                initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                transition={{ type: 'spring', stiffness: 70, damping: 16, delay: 0.3 }}
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ type: 'spring', stiffness: 70, damping: 16, delay: 0.25 }}
               >
                 {heroTitleLine1}
               </motion.span>
               <br />
               <motion.span
                 className="accent-text hero__title-line"
-                initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                transition={{ type: 'spring', stiffness: 70, damping: 16, delay: 0.45 }}
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ type: 'spring', stiffness: 70, damping: 16, delay: 0.35 }}
               >
                 {heroTitleLine2}
               </motion.span>
             </h1>
             <motion.p
               className="hero__subtitle"
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 0.55 }}
+              transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 0.45 }}
             >
               We bring human insights and intelligent systems together.
               So that you don't simply outperform the market, you Outcreate it.
             </motion.p>
             <motion.div
               className="hero__actions"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 0.7 }}
+              transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 0.55 }}
             >
               <MagneticButton
                 className="btn btn-primary"
                 onClick={() => handleNavigate('/work')}
               >
-                Learn More
+                View Selected Work
                 <svg className="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14" />
                   <path d="M12 5l7 7-7 7" />
@@ -132,20 +115,20 @@ export default function Hero() {
               </MagneticButton>
               <MagneticButton
                 className="btn btn-outline"
-                onClick={() => handleNavigate('/about')}
+                onClick={() => handleNavigate('/contact')}
               >
-                About Us
+                Get in Touch
               </MagneticButton>
             </motion.div>
           </div>
         </motion.div>
 
-        {/* Stats row with count-up animation */}
+        {/* Stats row */}
         <motion.div
           className="hero__stats"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 0.9 }}
+          transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 0.7 }}
           onViewportEnter={() => setStatsVisible(true)}
           viewport={{ once: true }}
         >
@@ -153,7 +136,7 @@ export default function Hero() {
             <span className="hero__stat-number">
               {statsVisible ? <CountUp target={30} suffix="+" /> : '0+'}
             </span>
-            <span className="hero__stat-label">Projects Delivered</span>
+            <span className="hero__stat-label">Projects Launched</span>
           </div>
           <div className="hero__stat-divider" />
           <div className="hero__stat">
@@ -165,9 +148,9 @@ export default function Hero() {
           <div className="hero__stat-divider" />
           <div className="hero__stat">
             <span className="hero__stat-number">
-              {statsVisible ? <CountUp target={2} suffix="x" /> : '0x'}
+              {statsVisible ? <CountUp target={100} suffix="%" /> : '0%'}
             </span>
-            <span className="hero__stat-label">Avg. Efficiency Increase</span>
+            <span className="hero__stat-label">On-Time Delivery</span>
           </div>
         </motion.div>
       </div>

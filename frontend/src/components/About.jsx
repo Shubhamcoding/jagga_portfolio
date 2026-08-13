@@ -8,7 +8,7 @@ const team = [
     role: 'Founder & Creative Director',
     bio: 'Visionary leader with a passion for crafting digital brands that leave a lasting impression. Drives the creative vision behind every project.',
     avatar: 'GJ',
-    color: '#EE4D38',
+    color: 'var(--color-accent)',
   },
   {
     id: 2,
@@ -62,25 +62,24 @@ export default function About() {
     <AnimatedSection id="about" className="section-dark">
       <div className="about__layout">
         <AnimatedItem className="about__story">
-          <span className="section-label">About Us</span>
+          <span className="section-label">Who We Are</span>
           <h2 className="section-title">
-            We're <span className="accent-text">Jagga & Co.</span>
+            Small team, <span className="accent-text">real impact.</span>
           </h2>
           <p className="about__description">
-            We're a tight-knit team of designers, developers, and strategists who believe 
-            every pixel should earn its place. We don't do cookie-cutter — we diagnose, 
-            strategize, and build digital experiences that actually move the needle.
+            We're a tight-knit team of developers and designers who care deeply about our craft. 
+            We work directly with founders and teams to build web products that are fast, intuitive, 
+            and built to scale.
           </p>
           <p className="about__description">
-            Every project starts with a discovery call where we dig deep into your 
-            business, your users, and your competition. Then we wireframe, prototype, 
-            test, and iterate until the result is undeniably excellent.
+            No bloated account teams or endless bureaucracy. When you work with Jagga & Co. Digital, 
+            you talk directly with the people writing your code and designing your product.
           </p>
           <div className="about__values">
             {[
-              { icon: 'target', title: 'Strategy First', desc: 'Research and data drive every decision.' },
-              { icon: 'bolt', title: 'Built for Speed', desc: 'Sub-second load times, always.' },
-              { icon: 'gem', title: 'Pixel Perfect', desc: 'Every detail is intentional and polished.' },
+              { icon: 'target', title: 'Direct Collaboration', desc: 'Work directly with builders who understand your vision.' },
+              { icon: 'bolt', title: 'Performance & Speed', desc: 'Sub-second loading times and responsive performance.' },
+              { icon: 'gem', title: 'Thoughtful Craft', desc: 'Clean architecture, pixel precision, and maintainable code.' },
             ].map((value, index) => (
               <motion.div
                 key={value.title}
@@ -120,7 +119,7 @@ export default function About() {
                 href={member.linkedin}
                 target={member.linkedin ? "_blank" : undefined}
                 rel={member.linkedin ? "noopener noreferrer" : undefined}
-                className="about__member card-light"
+                className="about__member card-dark"
                 id={`team-member-${member.id}`}
                 style={member.linkedin ? { textDecoration: 'none', color: 'inherit', display: 'block', cursor: 'pointer' } : {}}
                 initial={{ opacity: 0, y: 40, scale: 0.95 }}

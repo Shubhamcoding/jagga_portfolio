@@ -1,12 +1,11 @@
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
 import AnimatedSection, { AnimatedItem } from './AnimatedSection';
 
 const services = [
   {
     id: 1,
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="3" width="20" height="14" rx="2" />
         <path d="M8 21h8" />
         <path d="M12 17v4" />
@@ -14,48 +13,47 @@ const services = [
         <path d="M13 14h4" />
       </svg>
     ),
-    title: 'Web Projects',
-    description: 'Full-stack web development with React, Next.js, and modern frameworks. Fast, accessible, and conversion-optimized.',
-    features: ['Custom Web Apps', 'E-Commerce', 'Landing Pages', 'Progressive Web Apps'],
+    title: 'Web Development',
+    description: 'Modern, responsive websites and web applications built with React, Next.js, and resilient cloud architecture.',
+    features: ['Custom Web Applications', 'Full-Stack Engineering', 'E-Commerce Platforms', 'Responsive Web Apps'],
   },
   {
     id: 2,
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
-        <circle cx="12" cy="12" r="3" />
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
       </svg>
     ),
-    title: 'Product Strategy',
-    description: 'Data-driven product strategy that connects business goals with user needs. From research to wireframing.',
-    features: ['User Research', 'Wireframing', 'A/B Testing', 'Growth Strategy'],
+    title: 'Custom Development',
+    description: 'Tailored software solutions, custom APIs, and backend architectures built from scratch to fit your exact business goals.',
+    features: ['Custom SaaS Solutions', 'API & Microservices', 'Cloud Architecture', 'Database Design'],
   },
   {
     id: 3,
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-        <path d="M2 17l10 5 10-5" />
-        <path d="M2 12l10 5 10-5" />
-      </svg>
-    ),
-    title: 'Custom Development',
-    description: 'Bespoke software solutions tailored to your unique needs. APIs, integrations, automation — we build it.',
-    features: ['API Development', 'System Integration', 'Automation', 'Cloud Infrastructure'],
-  },
-  {
-    id: 4,
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 19l7-7 3 3-7 7-3-3z" />
         <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
         <path d="M2 2l7.586 7.586" />
         <circle cx="11" cy="11" r="2" />
       </svg>
     ),
-    title: 'Interface Design',
-    description: 'Stunning UI/UX that users love. Design systems, micro-interactions, and pixel-perfect interfaces.',
-    features: ['UI/UX Design', 'Design Systems', 'Prototyping', 'Brand Identity'],
+    title: 'UI/UX Designing',
+    description: 'Human-centered interfaces focused on clarity, user retention, smooth interactions, and multi-device accessibility.',
+    features: ['Interface & Interaction Design', 'Design Systems', 'Interactive Prototypes', 'User Journey Mapping'],
+  },
+  {
+    id: 4,
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+      </svg>
+    ),
+    title: 'Product Strategies',
+    description: 'Strategic product roadmapping, codebase audits, performance tuning, and growth advice for digital products.',
+    features: ['Product Roadmapping', 'UX & Conversion Audit', 'Core Web Vitals Tuning', 'Technical Growth Strategy'],
   },
 ];
 
@@ -64,13 +62,12 @@ export default function Services() {
     <AnimatedSection id="services">
       <AnimatedItem>
         <div className="section-header">
-          <span className="section-label">What We Do</span>
+          <span className="section-label">Our Capabilities</span>
           <h2 className="section-title">
-            Markets and <span className="accent-text">Capabilities</span>
+            What we do <span className="accent-text">best.</span>
           </h2>
           <p className="section-subtitle">
-            End-to-end digital solutions. From strategy to design to development,
-            we cover every pixel of the journey.
+            End-to-end web engineering and product design. We help you build right from day one.
           </p>
         </div>
       </AnimatedItem>
@@ -130,13 +127,21 @@ export default function Services() {
                 </motion.li>
               ))}
             </ul>
-            <Link to="/contact" className="services__card-link">
+            <a 
+              href="#contact" 
+              className="services__card-link"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14" />
                 <path d="M12 5l7 7-7 7" />
               </svg>
               Read more
-            </Link>
+            </a>
+
           </motion.div>
         ))}
       </div>

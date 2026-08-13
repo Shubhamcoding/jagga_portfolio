@@ -11,13 +11,29 @@ export default function Contact() {
       <div className="contact__layout">
         <AnimatedItem className="contact__info">
           <h2 className="contact__heading">
-            Are you <span className="accent-text">ready?</span>
+            Let's build something <span className="accent-text">great.</span>
           </h2>
           <p className="contact__description">
-            The most forward-thinking leaders aren't just adopting new tools. 
-            They are taking Business Creativity to the next level. To not 
-            simply outperform the market, but to Outcreate it.
+            Have a project in mind, need technical advice, or just want to discuss ideas? 
+            Fill out the form and we'll get back to you within 24 hours.
           </p>
+
+          <div className="contact__details">
+            <div className="contact__detail-item">
+              <span className="contact__detail-icon">⚡</span>
+              <div>
+                <strong className="contact__detail-title">Quick Response</strong>
+                <p className="contact__detail-sub">Replies within 24 hours</p>
+              </div>
+            </div>
+            <div className="contact__detail-item">
+              <span className="contact__detail-icon">🌏</span>
+              <div>
+                <strong className="contact__detail-title">Location & Timezone</strong>
+                <p className="contact__detail-sub">India (UTC+5:30) · Global Clients</p>
+              </div>
+            </div>
+          </div>
         </AnimatedItem>
 
         <motion.form
@@ -67,7 +83,7 @@ export default function Contact() {
           </div>
 
           <motion.div
-            className="contact__form-group"
+            className="contact__form-group contact__form-group--textarea"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

@@ -1,5 +1,4 @@
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -21,12 +20,12 @@ export default function Footer() {
         <div className="footer__top">
           <motion.div
             className="footer__brand"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 80, damping: 18 }}
           >
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1rem', color: 'var(--color-text)' }}>
+            <h3 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.75rem', color: 'var(--color-text)' }}>
               Let's build something <span className="accent-text">great.</span>
             </h3>
             <p className="footer__tagline">
@@ -98,7 +97,7 @@ export default function Footer() {
 
         <div className="footer__bottom">
           <p className="footer__copyright">
-            &copy; {currentYear} Jagga & Co. Digital. All rights reserved.
+            &copy; {currentYear} All rights reserved.
           </p>
           <motion.button
             className="footer__back-to-top"

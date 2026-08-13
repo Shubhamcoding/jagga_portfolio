@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Link } from 'react-router-dom';
 import AnimatedSection, { AnimatedItem } from './AnimatedSection';
 import AnimatedCard from './AnimatedCard';
 import ProjectModal from './ProjectModal';
@@ -50,13 +49,13 @@ export default function Work() {
       <AnimatedSection id="work">
         <AnimatedItem>
           <div className="section-header">
-            <span className="section-label">Our Work</span>
+            <span className="section-label">Featured Work</span>
             <h2 className="section-title">
-              Built for the <span className="accent-text">Future</span>
+              Built with <span className="accent-text">purpose & speed.</span>
             </h2>
             <p className="section-subtitle">
-              Our technology and domain expertise converge to deliver
-              experiences that redefine what's possible.
+              A selection of digital products we've conceptualized, designed, and launched.
+              Click on any project to explore a live preview.
             </p>
           </div>
         </AnimatedItem>
@@ -88,7 +87,7 @@ export default function Work() {
                     onMouseEnter={() => setHoveredProject(project.id)}
                     onMouseLeave={() => setHoveredProject(null)}
                   >
-                    <img src={project.image} alt={project.title} />
+                    <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
                     <motion.div
                       className="work__card-overlay"
                       initial={false}
