@@ -1,8 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring, animate } from 'motion/react';
+import { motion, useScroll, useTransform, animate } from 'motion/react';
 import MagneticButton from './MagneticButton';
-import heroBg from '../assets/images/hero-bg.mp4';
-import heroBgPoster from '../assets/images/hero-bg-poster-opt.jpg';
 
 /* Animated counter that counts up from 0 to the target value */
 function CountUp({ target, suffix = '' }) {

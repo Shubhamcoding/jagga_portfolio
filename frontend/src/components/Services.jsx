@@ -6,31 +6,16 @@ const services = [
     id: 1,
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2" />
-        <path d="M8 21h8" />
-        <path d="M12 17v4" />
-        <path d="M7 8l3 3-3 3" />
-        <path d="M13 14h4" />
+        <circle cx="12" cy="12" r="10" />
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
       </svg>
     ),
-    title: 'Web Development',
-    description: 'Modern, responsive websites and web applications built with React, Next.js, and resilient cloud architecture.',
-    features: ['Custom Web Applications', 'Full-Stack Engineering', 'E-Commerce Platforms', 'Responsive Web Apps'],
+    title: 'Product Strategies',
+    description: 'Strategic product roadmapping, codebase audits, performance tuning, and growth advice for digital products.',
+    features: ['Product Roadmapping', 'UX & Conversion Audit', 'Core Web Vitals Tuning', 'Technical Growth Strategy'],
   },
   {
     id: 2,
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="16 18 22 12 16 6" />
-        <polyline points="8 6 2 12 8 18" />
-      </svg>
-    ),
-    title: 'Custom Development',
-    description: 'Tailored software solutions, custom APIs, and backend architectures built from scratch to fit your exact business goals.',
-    features: ['Custom SaaS Solutions', 'API & Microservices', 'Cloud Architecture', 'Database Design'],
-  },
-  {
-    id: 3,
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 19l7-7 3 3-7 7-3-3z" />
@@ -44,16 +29,31 @@ const services = [
     features: ['Interface & Interaction Design', 'Design Systems', 'Interactive Prototypes', 'User Journey Mapping'],
   },
   {
+    id: 3,
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+      </svg>
+    ),
+    title: 'Custom Development',
+    description: 'Tailored software solutions, custom APIs, and backend architectures built from scratch to fit your exact business goals.',
+    features: ['Custom SaaS Solutions', 'API & Microservices', 'Cloud Architecture', 'Database Design'],
+  },
+  {
     id: 4,
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <path d="M8 21h8" />
+        <path d="M12 17v4" />
+        <path d="M7 8l3 3-3 3" />
+        <path d="M13 14h4" />
       </svg>
     ),
-    title: 'Product Strategies',
-    description: 'Strategic product roadmapping, codebase audits, performance tuning, and growth advice for digital products.',
-    features: ['Product Roadmapping', 'UX & Conversion Audit', 'Core Web Vitals Tuning', 'Technical Growth Strategy'],
+    title: 'Web Development',
+    description: 'Modern, responsive websites and web applications built with React, Next.js, and resilient cloud architecture.',
+    features: ['Custom Web Applications', 'Full-Stack Engineering', 'E-Commerce Platforms', 'Responsive Web Apps'],
   },
 ];
 
