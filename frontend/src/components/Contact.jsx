@@ -59,6 +59,7 @@ export default function Contact() {
                 name="name"
                 placeholder="Full Name*"
                 required
+                maxLength={60}
                 className="contact__input"
               />
               <ValidationError prefix="Name" field="name" errors={state.errors} />
@@ -76,6 +77,7 @@ export default function Contact() {
                 name="email"
                 placeholder="Email Address*"
                 required
+                maxLength={100}
                 className="contact__input"
               />
               <ValidationError prefix="Email" field="email" errors={state.errors} />
@@ -96,6 +98,25 @@ export default function Contact() {
               required
               rows="4"
               className="contact__input contact__textarea"
+              onInput={(e) => {
+                let text = e.target.value;
+                
+                const maxWords = 300;
+                const match = text.match(new RegExp(`^(\\s*\\S+){0,${maxWords}}\\s*`));
+                if (match && match[0].length < text.length) {
+                  text = match[0];
+                }
+
+                const maxWordLength = 25;
+                text = text.replace(new RegExp(`(\\S{${maxWordLength}})\\S+`, 'g'), '$1');
+
+                if (text !== e.target.value) {
+                  e.target.value = text;
+                }
+
+                e.target.style.height = 'auto';
+                e.target.style.height = `${e.target.scrollHeight}px`;
+              }}
             />
             <ValidationError prefix="Message" field="message" errors={state.errors} />
           </motion.div>

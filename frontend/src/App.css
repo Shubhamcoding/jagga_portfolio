@@ -1417,10 +1417,11 @@
 
 .contact__textarea {
   border-radius: var(--radius-md);
-  resize: vertical;
+  resize: none;
   min-height: 120px;
   flex-grow: 1;
-  height: 100%;
+  height: auto;
+  overflow: hidden;
 }
 
 .contact__submit {
