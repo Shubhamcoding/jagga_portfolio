@@ -102,8 +102,12 @@ export default function Navbar() {
           whileTap={{ scale: 0.98 }}
         >
           <a href="#home" className="navbar__logo" onClick={(e) => scrollToSection(e, 'home')}>
+            <picture>
+              <source srcSet="/logo1.png" media="(prefers-color-scheme: light)" />
+              <img src="/logo.png" alt="JD Logo" className="navbar__logo-img" />
+            </picture>
             <span className="navbar__logo-text">
-              <span className="navbar__logo-accent">Jagga</span> & Co. Digital
+              <span className="navbar__logo-accent">Jagga</span> Digital
             </span>
           </a>
         </motion.div>

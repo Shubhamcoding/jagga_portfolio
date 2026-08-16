@@ -72,7 +72,7 @@ export default function About() {
             and built to scale.
           </p>
           <p className="about__description">
-            No bloated account teams or endless bureaucracy. When you work with Jagga & Co. Digital, 
+            No bloated account teams or endless bureaucracy. When you work with Jagga Digital, 
             you talk directly with the people writing your code and designing your product.
           </p>
           <div className="about__values">

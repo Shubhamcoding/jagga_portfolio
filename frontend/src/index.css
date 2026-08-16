@@ -1,5 +1,5 @@
 /* ============================================
-   JAGGA & CO. DIGITAL — DESIGN SYSTEM
+   JAGGA DIGITAL — DESIGN SYSTEM
    Automatic Light & Dark System Theme
    ============================================ */
 
@@ -215,7 +215,7 @@ ul, ol {
 }
 
 .section-padding {
-  padding: var(--space-32) 0;
+  padding: var(--space-16) 0;
 }
 
 .section-padding:not(#home) {
@@ -384,7 +384,7 @@ ul, ol {
   }
   
   .section-padding {
-    padding: var(--space-20) 0;
+    padding: var(--space-10) 0;
   }
   
   .container {
@@ -407,7 +407,7 @@ ul, ol {
   }
 
   .section-padding {
-    padding: var(--space-16) 0;
+    padding: var(--space-8) 0;
   }
 
   .container {

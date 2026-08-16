@@ -1,5 +1,5 @@
 /* ============================================
-   COMPONENT STYLES — JAGGA & CO. DIGITAL
+   COMPONENT STYLES — JAGGA DIGITAL
    Inspired by LTM.com
    ============================================ */
 
@@ -36,15 +36,25 @@
 }
 
 .navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  z-index: 1001;
   font-family: var(--font-heading);
   font-weight: 500;
-  font-size: var(--text-2xl);
-  z-index: 1001;
+  font-size: var(--text-xl);
   letter-spacing: -0.02em;
 }
 
 .navbar__logo-accent {
   color: var(--color-accent);
+}
+
+.navbar__logo-img {
+  height: calc(var(--nav-height) - 12px);
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .navbar__links {
@@ -166,7 +176,6 @@
 
   .navbar__logo {
     white-space: nowrap;
-    font-size: var(--text-xl);
   }
 
   .navbar__hamburger {
