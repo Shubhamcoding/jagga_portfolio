@@ -106,9 +106,6 @@ export default function Navbar() {
               <source srcSet="/logo1.png" media="(prefers-color-scheme: light)" />
               <img src="/logo.png" alt="JD Logo" className="navbar__logo-img" />
             </picture>
-            <span className="navbar__logo-text">
-              <span className="navbar__logo-accent">Jagga</span> Digital
-            </span>
           </a>
         </motion.div>
 

@@ -10,24 +10,48 @@ export default function Contact() {
     <AnimatedSection id="contact" className="section-dark">
       <div className="contact__layout">
         <AnimatedItem className="contact__info">
-          <h2 className="contact__heading">
-            Let's build something <span className="accent-text">great.</span>
-          </h2>
+
           <p className="contact__description">
             Have a project in mind, need technical advice, or just want to discuss ideas? 
             Fill out the form and we'll get back to you within 24 hours.
           </p>
 
           <div className="contact__details">
+            <a 
+              href="mailto:jaggadigital.co@gmail.com" 
+              className="contact__detail-item"
+              style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}
+            >
+              <span className="contact__detail-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </span>
+              <div>
+                <strong className="contact__detail-title">Direct Contact</strong>
+                <p className="contact__detail-sub">jaggadigital.co@gmail.com</p>
+              </div>
+            </a>
             <div className="contact__detail-item">
-              <span className="contact__detail-icon">⚡</span>
+              <span className="contact__detail-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+              </span>
               <div>
                 <strong className="contact__detail-title">Quick Response</strong>
                 <p className="contact__detail-sub">Replies within 24 hours</p>
               </div>
             </div>
             <div className="contact__detail-item">
-              <span className="contact__detail-icon">🌏</span>
+              <span className="contact__detail-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+              </span>
               <div>
                 <strong className="contact__detail-title">Location & Timezone</strong>
                 <p className="contact__detail-sub">India (UTC+5:30) · Global Clients</p>
